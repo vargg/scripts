@@ -1,0 +1,85 @@
+[tool.ruff]
+format = "grouped"
+line-length = 79
+src = ["src"]
+
+exclude = [".git*", ".mypy*", ".ruff*", "venv"]
+ignore = [
+    "ANN002", "ANN003", "ANN101", "ANN102",
+    "COM812",
+    "D100", "D104", "D107", "D203", "D212",
+    "RUF001", "RUF002", "RUF003",
+    "TRY003",
+    "S101",
+]
+select = [
+    "A",        # builtins
+    "ANN",      # annotations
+    "ARG",      # unused-arguments
+    "ASYNC",    # async
+    "B",        # bugbear
+    "BLE",      # blind except
+    "C4",       # comprehensions
+    "C90",      # mccabe
+    "COM",      # commas
+    "D",        # pydocstyle
+    "DJ",       # django
+    "DTZ",      # datetimez
+    "E", "W",   # pycodestyle
+    "ERA",      # eradicate
+    "EXE",      # executable
+    "F",        # pyflakes
+    "FIX",      # fixme
+    "FLY",      # flynt
+    "G",        # logging-format
+    "I",        # isort
+    "ICN",      # import-conventions
+    "INP",      # no-pep420
+    "ISC",      # implicit-str-concat
+    "N",        # naming
+    "PERF",     # perflint
+    "PGH",      # pygrep-hooks
+    "PIE",      # pie
+    "PL",       # pylint
+    "PTH",      # pathlib
+    "PYI",      # pyi
+    "RET",      # return
+    "RSE",      # raise
+    "RUF",      # ruff
+    "S",        # bandit
+    "SIM",      # simplify
+    "SLF",      # self
+    "SLOT",     # slots
+    "T10",      # debugger
+    "T20",      # print
+    "TRY",      # tryceratops
+    #"Q",        # quotes
+    "UP",       # pyupgrade
+]
+target-version = "py310"
+
+[tool.ruff.flake8-builtins]
+builtins-ignorelist = ["id"]
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.mccabe]
+max-complexity=5
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"*test*.py" = ["ANN001", "ANN201", "ANN202", "D", "N802", "S101"]
+
+[tool.ruff.pycodestyle]
+max-doc-length = 79
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.black]
+line-length = 79
+target-version = ['py310']
+--check = "yes"
+--diff = "yes"
+--skip-string-normalization = "yes"
