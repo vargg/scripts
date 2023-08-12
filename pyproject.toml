@@ -53,7 +53,7 @@ select = [
     "T10",      # debugger
     "T20",      # print
     "TRY",      # tryceratops
-    #"Q",        # quotes
+    "Q",        # quotes
     "UP",       # pyupgrade
 ]
 target-version = "py310"
