@@ -1,19 +1,36 @@
 #!/bin/bash
 
-# firefox
-sudo snap remove --purge firefox && sudo apt remove --autoremove firefox
-sudo add-apt-repository ppa:mozillateam/ppa && sudo gpg \
-    --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/mozillateam.gpg \
-    --keyserver [keyserver.ubuntu.com](http://keyserver.ubuntu.com/) --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21
-echo '
-Package: *firefox
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 501
 
-Package: firefox*
-Pin: release o=Ubuntu
-Pin-Priority: -1
-' | sudo tee /etc/apt/preferences.d/mozilla-firefox | sudo tee /etc/apt/preferences.d/99mozillateamppa
+if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    OS_RELEASE=$ID
+elif [[ -f /usr/lib/os-release ]]; then
+    source /usr/lib/os-release
+    OS_RELEASE=$ID
+else
+    echo "Failed to check the system OS" >&2
+    exit 1
+fi
+
+INCLUDE_GMOME=$INCLUDE_GMOME
+INCLUDE_SNAP=$INCLUDE_SNAP
+
+if [[ $OS_RELEASE == "ubuntu" ]]; then
+    # firefox
+    sudo snap remove --purge firefox && sudo apt remove --autoremove firefox
+    sudo add-apt-repository ppa:mozillateam/ppa && sudo gpg \
+        --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/mozillateam.gpg \
+        --keyserver [keyserver.ubuntu.com](http://keyserver.ubuntu.com/) --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21
+    echo '
+    Package: *firefox
+    Pin: release o=LP-PPA-mozillateam
+    Pin-Priority: 501
+
+    Package: firefox*
+    Pin: release o=Ubuntu
+    Pin-Priority: -1
+    ' | sudo tee /etc/apt/preferences.d/mozilla-firefox | sudo tee /etc/apt/preferences.d/99mozillateamppa
+fi
 
 # vscode
 wget -qO - [https://packages.microsoft.com/keys/microsoft.asc](https://packages.microsoft.com/keys/microsoft.asc) | gpg --dearmor > packages.microsoft.gpg
@@ -22,7 +39,6 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packag
 rm -f packages.microsoft.gpg
 
 # spotify
-# curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 wget -nv -4O - https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
@@ -34,25 +50,19 @@ sudo apt install \
     blueman \
     curl \
     git \
-    gnome-shell-extension-manager \
-    gnome-tweaks \
     htop \
     vim \
     wireguard \
     transmission \
     vlc \
     firefox \
-    guacke \
+    guake \
     chromium-browser \
     apt-transport-https code \
     spotify-client \
     virtualbox virtualbox—ext–pack \
     keepassxc \
     telegram-desktop
-
-sudo snap install \
-    notion-snap \
-    twinux
 
 # pyenv / python
 sudo apt install \
@@ -74,8 +84,19 @@ sudo apt install \
 # sunflower
 # zoom
 
-# gnome-shell-extensions:
-#   - clipboard -ndicator
-#   - cronomix
-#   - gtile
-#   - lock keys
+if [[ ! -z $INCLUDE_GMOME ]]; then
+    sudo apt install \
+        gnome-shell-extension-manager \
+        gnome-tweaks \
+    # gnome-shell-extensions:
+    #   - clipboard -ndicator
+    #   - cronomix
+    #   - gtile
+    #   - lock keys
+fi
+
+if [[ ! -z $INCLUDE_SNAP ]]; then
+    sudo snap install \
+        notion-snap \
+        twinux
+fi
