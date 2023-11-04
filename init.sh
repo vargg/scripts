@@ -89,10 +89,14 @@ if [[ ! -z $INCLUDE_GNOME ]]; then
     #   - cronomix
     #   - gtile
     #   - lock keys
+else
+    echo "Skip gnome extensions installation"
 fi
 
 if [[ ! -z $INCLUDE_SNAP ]]; then
     sudo snap install \
         notion-snap \
         twinux
+else
+    echo "Skip snap packages installation"
 fi
