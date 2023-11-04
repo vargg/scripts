@@ -10,7 +10,7 @@ fi
 sudo apt update
 
 # Change ssh port
-echo "    Port $SSH_PORT" >> /etc/ssh/ssh_config
+echo "    Port $SSH_PORT" >> /etc/ssh/sshd_config
 systemctl restart sshd
 
 # Ports withe list
