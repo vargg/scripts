@@ -52,10 +52,10 @@ sudo apt install \
     git \
     htop \
     vim \
-    wireguard \
     transmission \
     vlc \
     firefox \
+    thunderbird \
     guake \
     chromium-browser \
     apt-transport-https code \
@@ -79,8 +79,8 @@ sudo apt install \
 # anki
 # docker
 # firecamp
+# onedriver
 # pyenv
-# skype
 # sunflower
 # zoom
 
