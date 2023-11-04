@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [[ -f /etc/os-release ]]; then
     source /etc/os-release
     OS_RELEASE=$ID
@@ -11,9 +10,6 @@ else
     echo "Failed to check the system OS" >&2
     exit 1
 fi
-
-INCLUDE_GMOME=$INCLUDE_GMOME
-INCLUDE_SNAP=$INCLUDE_SNAP
 
 if [[ $OS_RELEASE == "ubuntu" ]]; then
     # firefox
