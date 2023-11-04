@@ -80,7 +80,7 @@ sudo apt install \
 # sunflower
 # zoom
 
-if [[ ! -z $INCLUDE_GMOME ]]; then
+if [[ ! -z $INCLUDE_GNOME ]]; then
     sudo apt install \
         gnome-shell-extension-manager \
         gnome-tweaks \
