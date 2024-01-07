@@ -26,6 +26,9 @@ if [[ $OS_RELEASE == "ubuntu" ]]; then
     Pin: release o=Ubuntu
     Pin-Priority: -1
     ' | sudo tee /etc/apt/preferences.d/mozilla-firefox | sudo tee /etc/apt/preferences.d/99mozillateamppa
+
+    # show seconds
+    gsettings set org.gnome.desktop.interface clock-show-seconds true
 fi
 
 # vscode
