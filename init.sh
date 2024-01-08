@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ -f /etc/os-release ]]; then
     source /etc/os-release
     OS_RELEASE=$ID
@@ -26,15 +28,13 @@ if [[ $OS_RELEASE == "ubuntu" ]]; then
     Pin: release o=Ubuntu
     Pin-Priority: -1
     ' | sudo tee /etc/apt/preferences.d/mozilla-firefox | sudo tee /etc/apt/preferences.d/99mozillateamppa
-
-    # show seconds
-    gsettings set org.gnome.desktop.interface clock-show-seconds true
 fi
 
 # vscode
-wget -qO - [https://packages.microsoft.com/keys/microsoft.asc](https://packages.microsoft.com/keys/microsoft.asc) | gpg --dearmor > packages.microsoft.gpg
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] [https://packages.microsoft.com/repos/code](https://packages.microsoft.com/repos/code) stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
 
 # spotify
@@ -46,7 +46,6 @@ sudo add-apt-repository ppa:phoerious/keepassxc
 
 sudo apt update
 sudo apt install \
-    blueman \
     curl \
     git \
     htop \
@@ -56,12 +55,9 @@ sudo apt install \
     firefox \
     thunderbird \
     guake \
-    chromium-browser \
     apt-transport-https code \
     spotify-client \
-    virtualbox virtualbox—ext–pack \
-    keepassxc \
-    telegram-desktop
+    keepassxc
 
 # pyenv / python
 sudo apt install \
@@ -73,9 +69,10 @@ sudo apt install \
     libsqlite3-dev \
     liblzma-dev \
     zlib1g-dev \
-    python-tk python3-tk tk-dev
+    python3-tk tk-dev
 
 # anki
+# beekeeper-studio
 # docker
 # firecamp
 # onedriver
