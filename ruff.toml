@@ -1,4 +1,7 @@
 # global path ~/.config/ruff/ruff.toml (~/Library/Application Support/ruff/ruff.toml)
+# full lint: ruff check <path>
+# sort imports in one file: ruff check --select I --fixable I --fix <file_path>
+# format: ruff format --diff <path>
 
 src = ["src"]
 output-format = "grouped"
