@@ -42,7 +42,7 @@ Pin: release o=Ubuntu
 Pin-Priority: -1
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox | sudo tee /etc/apt/preferences.d/99mozillateamppa
 
-sudo apt install -y wget gpg gnupg ca-certificates gcc
+sudo apt update && sudo apt install -y wget gpg gnupg ca-certificates gcc
 
 
 add_repo() {
@@ -139,25 +139,37 @@ sudo apt install -y \
 curl https://pyenv.run | bash
 
 echo '
-# PYENV
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+eval "$(pyenv virtualenv-init -)"' >> ~/.pyenvrc
 
 echo '
-# PYENV
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [ -f ~/.pyenvrc ]; then
+    . ~/.pyenvrc
+fi
+' >> ~/.bashrc
+
+echo '
+if [ -f ~/.pyenvrc ]; then
+    . ~/.pyenvrc
+fi
 ' >> ~/.profile
+
+echo '
+export PS1="\[\e[1;34m\]\w\[\e[0m\]\[\e[1;35m\]\$(__git_ps1)\[\e[00m\]$ "
+' >> ~/.bash_envs
+
+echo '
+if [ -f ~/.bash_envs ]; then
+    . ~/.bash_envs
+fi
+' >> ~/.bashrc
 
 # anki
 # httpie
 # nekoray
 # onedriver
-# sunflower
 
 sudo apt install \
     gnome-shell-extension-manager \
