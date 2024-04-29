@@ -113,7 +113,8 @@ sudo apt install -y \
     apt-transport-https code \
     spotify-client \
     keepassxc \
-    beekeeper-studio
+    beekeeper-studio \
+    translate-shell
 
 # docker
 sudo apt install -y \
