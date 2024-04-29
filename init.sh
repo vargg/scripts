@@ -160,12 +160,7 @@ eval "$(pyenv init -)"
 
 sudo apt install \
     gnome-shell-extension-manager \
-    gnome-tweaks \
-    # gnome-shell-extensions:
-    #   - clipboard -ndicator
-    #   - cronomix
-    #   - gtile
-    #   - lock keys
+    gnome-tweaks
 
 sudo snap install \
     chromium \
