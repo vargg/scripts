@@ -114,7 +114,8 @@ sudo apt install -y \
     spotify-client \
     keepassxc \
     beekeeper-studio \
-    translate-shell
+    translate-shell \
+    diodon
 
 # docker
 sudo apt install -y \
@@ -157,17 +158,12 @@ fi
 ' >> ~/.profile
 
 echo '
-export PS1="\[\e[1;34m\]\w\[\e[0m\]\[\e[1;35m\]\$(__git_ps1)\[\e[00m\]$ "
-' >> ~/.bash_envs
-
-echo '
 if [ -f ~/.bash_envs ]; then
     . ~/.bash_envs
 fi
 ' >> ~/.bashrc
 
 # anki
-# httpie
 # nekoray
 # onedriver
 
@@ -177,8 +173,6 @@ sudo apt install \
 
 sudo snap install \
     chromium \
-    httpie \
-    logseq \
     notion-snap-reborn \
     telegram-desktop \
     twinux
