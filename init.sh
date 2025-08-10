@@ -13,7 +13,7 @@ RELEASE_CODENAME=$VERSION_CODENAME
 ARCHITECTURE=$(dpkg --print-architecture)
 
 if [[ $RELEASE_ID != "ubuntu" ]]; then
-    echo "Failed to check the system OS" >&2
+    echo "functionality tested only for ubuntu" >&2
     exit 1
 fi
 
@@ -126,34 +126,20 @@ sudo apt install -y \
     docker-compose-plugin
 sudo usermod -aG docker $USER
 
-# python / pyenv
-sudo apt install -y \
-    build-essential \
-    libssl-dev \
-    libreadline-dev \
-    libbz2-dev \
-    libffi-dev \
-    libsqlite3-dev \
-    liblzma-dev \
-    zlib1g-dev \
-    python3-tk tk-dev
-curl https://pyenv.run | bash
+# python / uv
+curl curl -LsSf https://astral.sh/uv/install.sh | sh
+
+echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.uvrc
 
 echo '
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"' >> ~/.pyenvrc
-
-echo '
-if [ -f ~/.pyenvrc ]; then
-    . ~/.pyenvrc
+if [ -f ~/.uvrc ]; then
+    . ~/.uvrc
 fi
 ' >> ~/.bashrc
 
 echo '
-if [ -f ~/.pyenvrc ]; then
-    . ~/.pyenvrc
+if [ -f ~/.uvrc ]; then
+    . ~/.uvrc
 fi
 ' >> ~/.profile
 
