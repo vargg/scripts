@@ -1,0 +1,57 @@
+{
+    "workbench.tree.indent": 16,
+
+    "editor.fontSize": 13,
+    "editor.formatOnSave": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.rulers": [100, 120],
+    "editor.inlayHints.enabled": "on",
+    "editor.minimap.enabled": false,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSaveMode": "modifications",
+    "editor.codeActionsOnSave": {
+        "source.convertImportFormat": "explicit",
+        "source.unusedImports": "explicit"
+    },
+
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.statusBarItem.enabled": false,
+
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.venv": true,
+        "**/__pycache__": true
+    },
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/.venv/**": true,
+        "**/.vscode/**": true
+    },
+    "search.exclude": {
+        "**/.venv": true
+    },
+
+    "telemetry.feedback.enabled": false,
+
+    "terminal.integrated.scrollback": 10000,
+
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.autoFormatStrings": true,
+
+    "indentRainbow.colors": [
+        "rgba(255,300,0,0.1)",
+        "rgba(255,127,255,0.1)",
+        "rgba(50,255,50,0.1)",
+        "rgba(255,50,50,0.1)",
+        "rgba(50,50,255,0.1)"
+    ],
+
+    "ruff.importStrategy": "fromEnvironment"
+}
